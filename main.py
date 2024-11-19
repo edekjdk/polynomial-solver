@@ -1,6 +1,8 @@
 polynomial = "5x^22-6x^33-2x^2-x^4-x^2"
 # polynomial = input("Enter a polynomial: ")
 
+
+
 def splitPolynomial(polynomial):
     powers = []
     pows = []
@@ -18,7 +20,22 @@ def splitPolynomial(polynomial):
             pows.append(i.split("^")[1])
         else:
             pows.append(1)
+
+    slimplifyPolynomial(pows, digits)
+
     return pows, digits
+
+
+def slimplifyPolynomial(pows, digits):
+    print( pows, digits)
+    current =  0
+    for i in range(len(pows)):
+        if pows[current] == pows[i]:
+            digits[i] = digits[current] + digits[i]
+        current = i
+    print(pows, digits)
+
+
 
 def printPolynomial(pows, digits):
     superscript_dict = {
