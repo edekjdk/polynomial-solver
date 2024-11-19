@@ -37,7 +37,7 @@ lastresult = ''
 for i in range(len(results)):
     lastresult = lastresult + "{}{}".format(digits[i], toSuper(pows[i]))
 print(lastresult)
-
+print("test")
 #refactor
 #add comments
 #build one function of that functionality
