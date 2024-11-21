@@ -71,6 +71,12 @@ def printPolynomial(pows, digits):
 
 print(printPolynomial(splitPolynomial(polynomial)[0],splitPolynomial(polynomial)[1]))
 
+
+
+
+
+
+
 #refactor
 #add comments
 #build one function of that functionality
