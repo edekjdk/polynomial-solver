@@ -1,4 +1,4 @@
-polynomial = "5x^22-6x^33-2x^2-x^4-x^2"
+polynomial = "5x^22-6x^33-2x^2-x^33+x^2"
 # polynomial = input("Enter a polynomial: ")
 
 
@@ -21,19 +21,39 @@ def splitPolynomial(polynomial):
         else:
             pows.append(1)
 
-    slimplifyPolynomial(pows, digits)
+    # slimplifyPolynomial(pows, digits)
+
+    # print(pows, digits)
+    # positions = []
+    # for i in range(len(pows)):
+    #     current = pows[i]
+    #     positions.append(i)
+    #     for j in range(len(pows)):
+    #         if current == pows[j] and i != j:
+    #             positions.append(j)
+    #     if len(positions) >1 :
+    #         temp = 0
+    #         for pos in positions:
+    #             if digits[pos] == "-x":
+    #                 number = 1
+    #             else:
+    #                 number = int(digits[pos][0:-1])
+    #             temp += number
+    #     positions = []
+    #
+    # print(positions)
 
     return pows, digits
 
 
-def slimplifyPolynomial(pows, digits):
-    print( pows, digits)
-    current =  0
-    for i in range(len(pows)):
-        if pows[current] == pows[i]:
-            digits[i] = digits[current] + digits[i]
-        current = i
-    print(pows, digits)
+# def slimplifyPolynomial(pows, digits):
+#     print( pows, digits)
+#     current =  0
+#     for i in range(len(pows)):
+#         if pows[current] == pows[i]:
+#             digits[i] = digits[current] + digits[i]
+#         current = i
+#     print(pows, digits)
 
 
 
