@@ -1,4 +1,4 @@
-polynomial = "5x^22-6x^33-2x^2-x^33+x^2"
+polynomial = "5x^22+6x^33-2x^2-x^33+x^2"
 # polynomial = input("Enter a polynomial: ")
 
 
@@ -23,7 +23,31 @@ def splitPolynomial(polynomial):
 
     # slimplifyPolynomial(pows, digits)
 
-    # print(pows, digits)
+    new_digits = []
+    for i in digits:
+        if i == "-x":
+            new_digits.append("-1x")
+        if i == "+x":
+            new_digits.append("+1x")
+        if i != "+x" and i != "-x":
+            new_digits.append(i)
+
+    result = {}
+
+    for pow,new_digit in zip(pows, new_digits):
+        if pow not in result:
+            result[pow] = int(new_digit[0:-1])
+        else:
+            result[pow] += int(new_digit[0:-1])
+
+
+    wynik = [str(s)+"x" for s in list(result.values())]
+    print(list(result.keys()))
+    print(wynik)
+
+
+
+
     # positions = []
     # for i in range(len(pows)):
     #     current = pows[i]
@@ -44,6 +68,9 @@ def splitPolynomial(polynomial):
     # print(positions)
 
     return pows, digits
+
+
+pows, digits = splitPolynomial(polynomial)
 
 
 # def slimplifyPolynomial(pows, digits):
@@ -69,7 +96,7 @@ def printPolynomial(pows, digits):
         lastresult = lastresult + "{}{}".format(digits[i], ''.join(superscript_dict[digit] for digit in str(pows[i])))
     return lastresult
 
-print(printPolynomial(splitPolynomial(polynomial)[0],splitPolynomial(polynomial)[1]))
+#print(printPolynomial(pows, digits))
 
 
 
