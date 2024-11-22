@@ -1,4 +1,4 @@
-polynomial = "2x^2-4x^2+x+x"
+polynomial = "22x^2-4x^2+x+x-x^3-7-5"
 # polynomial = input("Enter a polynomial: ")
 
 def splitPolynomial(polynomial):
@@ -16,8 +16,10 @@ def splitPolynomial(polynomial):
         digits.append(i.split("^")[0])
         if len(i.split("^")) == 2:
             pows.append(i.split("^")[1])
+        elif "x" not in i:
+            pows.append('0')
         else:
-            pows.append(1)
+            pows.append('1')
 
     new_digits = []
     for i in digits:
@@ -32,9 +34,15 @@ def splitPolynomial(polynomial):
 
     for pow,new_digit in zip(pows, new_digits):
         if pow not in result:
-            result[pow] = int(new_digit[0:-1])
+            if "x" not in new_digit:
+                result[pow] = int(new_digit)
+            else:
+                result[pow] = int(new_digit[0:-1])
         else:
-            result[pow] += int(new_digit[0:-1])
+            if "x" not in new_digit:
+                result[pow] += int(new_digit)
+            else:
+                result[pow] += int(new_digit[0:-1])
 
 
     wynik = [str(s)+"x" for s in list(result.values())]
@@ -59,6 +67,7 @@ def printPolynomial(pows, digits):
             lastresult += item
     lastresult = lastresult.replace("1x", "x")
     lastresult = lastresult.replace("x¹", "x")
+    lastresult = lastresult.replace("x⁰", "")
     return lastresult
 
 
