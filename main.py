@@ -1,7 +1,5 @@
-polynomial = "5x^22+6x^33-2x^2-x^33+x^2"
+polynomial = "2x^2-4x^2+x+x"
 # polynomial = input("Enter a polynomial: ")
-
-
 
 def splitPolynomial(polynomial):
     powers = []
@@ -9,7 +7,7 @@ def splitPolynomial(polynomial):
     digits = []
     start = 0
     for i in range(len(polynomial)):
-        if polynomial[i] == "-" or polynomial[i] == "+":
+        if i!=0 and polynomial[i] == "-" or polynomial[i] == "+":
             powers.append(polynomial[start:i])
             start = i
         if i == len(polynomial) - 1:
@@ -20,8 +18,6 @@ def splitPolynomial(polynomial):
             pows.append(i.split("^")[1])
         else:
             pows.append(1)
-
-    # slimplifyPolynomial(pows, digits)
 
     new_digits = []
     for i in digits:
@@ -42,47 +38,10 @@ def splitPolynomial(polynomial):
 
 
     wynik = [str(s)+"x" for s in list(result.values())]
-    print(list(result.keys()))
-    print(wynik)
 
-
-
-
-    # positions = []
-    # for i in range(len(pows)):
-    #     current = pows[i]
-    #     positions.append(i)
-    #     for j in range(len(pows)):
-    #         if current == pows[j] and i != j:
-    #             positions.append(j)
-    #     if len(positions) >1 :
-    #         temp = 0
-    #         for pos in positions:
-    #             if digits[pos] == "-x":
-    #                 number = 1
-    #             else:
-    #                 number = int(digits[pos][0:-1])
-    #             temp += number
-    #     positions = []
-    #
-    # print(positions)
-
-    return pows, digits
-
+    return list(result.keys()), wynik
 
 pows, digits = splitPolynomial(polynomial)
-
-
-# def slimplifyPolynomial(pows, digits):
-#     print( pows, digits)
-#     current =  0
-#     for i in range(len(pows)):
-#         if pows[current] == pows[i]:
-#             digits[i] = digits[current] + digits[i]
-#         current = i
-#     print(pows, digits)
-
-
 
 def printPolynomial(pows, digits):
     superscript_dict = {
@@ -93,10 +52,17 @@ def printPolynomial(pows, digits):
     lastresult = ''
 
     for i in range(len(pows)):
-        lastresult = lastresult + "{}{}".format(digits[i], ''.join(superscript_dict[digit] for digit in str(pows[i])))
+        item = "{}{}".format(digits[i], ''.join(superscript_dict[digit] for digit in str(pows[i])))
+        if item[0]!="-" and i != 0:
+            lastresult += "+{}".format(item)
+        else:
+            lastresult += item
+    lastresult = lastresult.replace("1x", "x")
+    lastresult = lastresult.replace("x¹", "x")
     return lastresult
 
-#print(printPolynomial(pows, digits))
+
+print(printPolynomial(pows, digits))
 
 
 
