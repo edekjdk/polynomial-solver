@@ -1,4 +1,4 @@
-polynomial = "22x^2-4x^2+x+x-x^3-7-5"
+polynomial = "22x^2-4x^2+x+x-x^3-7-5-22x^100"
 # polynomial = input("Enter a polynomial: ")
 
 def splitPolynomial(polynomial):
@@ -15,7 +15,7 @@ def splitPolynomial(polynomial):
     for i in powers:
         digits.append(i.split("^")[0])
         if len(i.split("^")) == 2:
-            pows.append(i.split("^")[1])
+            pows.append(int(i.split("^")[1]))
         elif "x" not in i:
             pows.append('0')
         else:
@@ -46,12 +46,21 @@ def splitPolynomial(polynomial):
 
 
     wynik = [str(s)+"x" for s in list(result.values())]
-
+    print(result.keys())
+    print(wynik)
     return list(result.keys()), wynik
 
 pows, digits = splitPolynomial(polynomial)
 
 def printPolynomial(pows, digits):
+    zipped = zip(pows, digits)
+
+    sorted_zipped = sorted(zipped, key=lambda x: int(x[0]), reverse=True)
+    sorted_keys, sorted_values = zip(*sorted_zipped)
+
+    pows= list(sorted_keys)
+    digits = list(sorted_values)
+
     superscript_dict = {
         '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
         '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
@@ -65,9 +74,13 @@ def printPolynomial(pows, digits):
             lastresult += "+{}".format(item)
         else:
             lastresult += item
+
+    print(lastresult)
     lastresult = lastresult.replace("1x", "x")
     lastresult = lastresult.replace("x¹", "x")
     lastresult = lastresult.replace("x⁰", "")
+
+
     return lastresult
 
 
