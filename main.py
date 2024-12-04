@@ -1,4 +1,6 @@
-polynomial = "22x^2-4x^2+x+x-x^3-7-5-22x^100"
+from operator import indexOf
+
+polynomial = "22x^2-4x^2+x+x-x^3-7-5+2x^100"
 # polynomial = input("Enter a polynomial: ")
 
 def splitPolynomial(polynomial):
@@ -46,8 +48,6 @@ def splitPolynomial(polynomial):
 
 
     wynik = [str(s)+"x" for s in list(result.values())]
-    print(result.keys())
-    print(wynik)
     return list(result.keys()), wynik
 
 pows, digits = splitPolynomial(polynomial)
@@ -70,14 +70,14 @@ def printPolynomial(pows, digits):
 
     for i in range(len(pows)):
         item = "{}{}".format(digits[i], ''.join(superscript_dict[digit] for digit in str(pows[i])))
+        if item[item.index('x'):] == "x¹":
+            item = item[:item.index('x')+1]
         if item[0]!="-" and i != 0:
             lastresult += "+{}".format(item)
         else:
             lastresult += item
 
-    print(lastresult)
     lastresult = lastresult.replace("1x", "x")
-    lastresult = lastresult.replace("x¹", "x")
     lastresult = lastresult.replace("x⁰", "")
 
 
