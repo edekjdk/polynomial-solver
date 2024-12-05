@@ -1,6 +1,8 @@
-from operator import indexOf
+from operator import index
 
-polynomial = "22x^2-4x^2+x+x-x^3-7-5+2x^100"
+import numpy as np
+
+polynomial = "1x^2-2x+1"
 # polynomial = input("Enter a polynomial: ")
 
 def splitPolynomial(polynomial):
@@ -80,17 +82,27 @@ def printPolynomial(pows, digits):
     lastresult = lastresult.replace("1x", "x")
     lastresult = lastresult.replace("x⁰", "")
 
-
-    return lastresult
-
-
-print(printPolynomial(pows, digits))
+    return lastresult, pows, digits
 
 
+resultToPrint, pows, digits = printPolynomial(pows, digits)
 
+print(resultToPrint)
 
 
 
+def solvePoly(pows, digits):
+    pows = [int(i) for i in pows]
+    pom = []
+    coeffs = [i for i in range(pows[0],pows[-1]-1,-1)]
+    for i in coeffs:
+        if i in pows:
+            pom.append(int(digits[pows.index(i)][:digits[pows.index(i)].index('x')]))
+        else:
+            pom.append(0)
+    print(np.roots(pom))
+
+solvePoly(pows, digits)
 
 #refactor
 #add comments
