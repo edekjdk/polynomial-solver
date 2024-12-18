@@ -9,22 +9,20 @@ def parse_polynomial(inputTextPolynomial): #funckja przyjmuje wielomian w formie
             start = i
         if i == len(inputTextPolynomial) - 1:
             polynomialParts.append(inputTextPolynomial[start:i+1])
-    print(polynomialParts)
     for part in polynomialParts:
         if "x^" in part:
-            power = int(part[part.index("^"):])
-            coeff = part[:part.index("x")]
-            if "+" in coeff:
-                coeff = int(coeff[coeff.index("+"):])
-            print(power, coeff)
+            power = int(part[part.index("^")+1:])
+            coeff = int(part[:part.index("x")])
         elif "x" in part:
-            power = 1
-            coeff = part[:part.index("x")]
-            if "+" in coeff:
-                coeff = int(coeff[coeff.index("+") + 1:])
-            if len(part) == 2:
+            if part == "+x":
                 power = 1
                 coeff = 1
+            elif part == "-x":
+                power = 1
+                coeff = -1
+            else:
+                power = 1
+                coeff = int(part[:part.index("x")])
         else:
             power = 0
             coeff = int(part)
@@ -34,5 +32,4 @@ def parse_polynomial(inputTextPolynomial): #funckja przyjmuje wielomian w formie
         else:
             parsedPolynomial[power] = coeff
     return parsedPolynomial
-    #print(polynomialParts) #tablica z czesciami wielomianu
-    #return inputTextPolynomial
+
