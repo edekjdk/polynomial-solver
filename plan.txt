@@ -1,0 +1,8 @@
+1. Add a seperate files for each fumctionality: file ploynomial.py which includes a Polynomial class, next we should have a file which contains a parser function.
+files: polynomial.py, parse_polynomial.py
+
+polynomial.py: class Polynomial, ta klasa przyjmuje sparsowany juz wielomian z formy tekstowwej. W klasie sa rozne dzialania i funckje takie jak
+ dodawanie odejmowanie dzielenie wyswietlanie.
+
+wywołujemy na tekstowym zapisie wielomianu funkcje parse_polynomial, nastepnie towrzymy obiekt ze sparsowaniej juz wersji wielomianu.
+Sparsowana wersja wielomianu to slownik: {potęga: współczynnik}. Kolejne funckcje w klasie polynomial beda wykonywaly operacje na tym slowniku
