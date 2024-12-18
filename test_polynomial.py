@@ -1,41 +1,61 @@
-# import unittest
-# from polynomial import Polynomial
-# from parse_polynomial import parse_polynomial
-#
-#
-# class TestPolynomial(unittest.TestCase):
-#     def test_parse_polynomial(self):
-#         # Test poprawnego parsowania
-#         parsed = parse_polynomial("3x^2-2x+5")
-#         expected = [(2, 3), (1, -2), (0, 5)]  # [(power, coefficient)]
-#         self.assertEqual(parsed, expected)
-#
-#     def test_polynomial_print(self):
-#         # Test poprawnego wyświetlania
-#         poly = Polynomial([(2, 3), (1, -2), (0, 5)])  # 3x^2 - 2x + 5
-#         self.assertEqual(str(poly), "3x²-2x+5")
-#
-#     def test_polynomial_free_term(self):
-#         # Test wielomianu z samym wyrazem wolnym
-#         poly = Polynomial([(0, 5)])  # 5
-#         self.assertEqual(str(poly), "5")
-#
-#     def test_empty_polynomial(self):
-#         # Test pustego wielomianu
-#         parsed = parse_polynomial("")
-#         self.assertEqual(parsed, [])
-#
-#
-# if __name__ == "__main__":
-#     unittest.main()
-# test_polynomial.py
-from polynomial import Polynomial
+import unittest
+
 from parse_polynomial import parse_polynomial
+from polynomial import Polynomial
 
-textPolynomial1 = "3x^2-2x+5"
 
-parsed = parse_polynomial(textPolynomial1)
-print("Parsed Polynomial:", parsed)  # Oczekiwany wynik: [(2, 3), (1, -2), (0, 5)]
+#print(parse_polynomial(textPolynomial1))
+class TestPolynomial:
 
-poly = Polynomial(parsed)
-print(poly.print())  # Oczekiwany wynik: "3x²-2x+5"
+    #def test(capsys):
+        # #try
+        # textPolynomial1 = "3x^2-2x+5"
+        #
+        # poly1 = Polynomial(parse_polynomial(textPolynomial1))
+        # #when
+        # poly1.print()
+        # out, err = capsys.readouterr()
+        #
+        # #then
+        # assert out == "3x²-2x+5\n"
+
+    def test_parse_polynomial(self):
+        #try
+        textPolynomial = "3x^2-2x+5"
+
+        #when
+        parsed = parse_polynomial(textPolynomial)
+
+        assert parsed == [(2, 3), (1, -2), (0, 5)]
+
+    def test_polynomial_print(self, capsys):
+        textPolynomial = "3x^2-2x+5"
+        parsed = parse_polynomial(textPolynomial)
+
+        poly = Polynomial(parsed)
+        poly.print()
+
+        out, err = capsys.readouterr()
+
+        assert out == "3x²-2x+5\n"
+
+    def test_polynomial_free_term(self, capsys):
+        textPolynomial = "5"
+        parsed = parse_polynomial(textPolynomial)
+
+        poly = Polynomial(parsed)
+        poly.print()
+
+        out, err = capsys.readouterr()
+
+        assert out == "5\n"
+
+
+    def test_parse_polynomial_free(self):
+        #try
+        textPolynomial = ""
+
+        #when
+        parsed = parse_polynomial(textPolynomial)
+
+        assert parsed == []

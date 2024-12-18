@@ -48,5 +48,4 @@ def parse_polynomial(inputTextPolynomial): #funckja przyjmuje wielomian w formie
     sortedParsedPolynomial = sorted(parsedPolynomial.items(), key=lambda x: x[0], reverse=True)
     return sortedParsedPolynomial
 
-
-# print(parse_polynomial("3x^2-2x+5"))
+print(parse_polynomial("3x^2-2x+5"))

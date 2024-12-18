@@ -1,4 +1,3 @@
-from parse_polynomial import parse_polynomial
 
 class Polynomial:
     def __init__(self, poly):
@@ -29,10 +28,6 @@ class Polynomial:
                 polynomialString += f"+{term}"
             else:
                 polynomialString += term
-        return polynomialString
+        print(polynomialString)
 
-#
-# textPolynomial1 = "5"
-#
-# poly1 = Polynomial(parse_polynomial(textPolynomial1))
-# print(poly1.print())
+
