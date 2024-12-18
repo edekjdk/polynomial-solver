@@ -83,3 +83,6 @@ def printPolynomial(result):
 result = splitPolynomial(polynomial)
 polynomial_str = printPolynomial(result)
 print(polynomial_str)
+
+
+print(int("+1"))
