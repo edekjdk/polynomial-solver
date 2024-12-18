@@ -59,3 +59,15 @@ class TestPolynomial:
         parsed = parse_polynomial(textPolynomial)
 
         assert parsed == []
+
+
+    def test_polynomial_degree(self, capsys):
+        textPolynomial = "x^100-x^99"
+        parsed = parse_polynomial(textPolynomial)
+
+        poly = Polynomial(parsed)
+        poly.degree()
+
+        out, err = capsys.readouterr()
+
+        assert out == "100\n"

@@ -1,3 +1,5 @@
+from parse_polynomial import parse_polynomial
+
 
 class Polynomial:
     def __init__(self, poly):
@@ -30,4 +32,16 @@ class Polynomial:
                 polynomialString += term
         print(polynomialString)
 
+    def degree(self):
+        degree = 0
+        for part in self.poly:
+            if part[0] > degree:
+                degree = part[0]
+        print(degree)
 
+
+text = "3x^100-4x^12+4x^13-2x^13"
+poly1 = Polynomial(parse_polynomial(text))
+
+poly1.print()
+poly1.degree()

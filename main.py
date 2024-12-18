@@ -88,3 +88,5 @@ result = splitPolynomial(polynomial)
 #
 #
 # print(int("+1"))
+
+print([(2,11),(3,10)])
