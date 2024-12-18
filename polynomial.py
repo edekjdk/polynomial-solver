@@ -5,10 +5,34 @@ class Polynomial:
         self.poly = poly
 
     def print(self):
-        print(self.poly)
+        superscript_dict = {
+            '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+            '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
+        }
 
+        polynomialString = ''
+        for power, coeff in self.poly:
+            if power == 0:  # Wyraz wolny, bez zmiennej
+                term = f"{coeff}"
+            elif power == 1:  # x zamiast x¹
+                term = f"{coeff}x"
+            else:
+                term = f"{coeff}x{''.join(superscript_dict[digit] for digit in str(power))}"
 
-textPolynomial1 = "-3x^3-4+4x^2+2x+322+x"
+            if coeff == 1 and power > 0:
+                term = term.replace("1x", "x")
+            elif coeff == -1 and power > 0:
+                term = term.replace("-1x", "-x")
 
-poly1 = Polynomial(parse_polynomial(textPolynomial1))
-poly1.print()
+            # Dodawanie znaku "+" dla dodatnich współczynników (poza pierwszym składnikiem)
+            if coeff > 0 and polynomialString:
+                polynomialString += f"+{term}"
+            else:
+                polynomialString += term
+        return polynomialString
+
+#
+# textPolynomial1 = "5"
+#
+# poly1 = Polynomial(parse_polynomial(textPolynomial1))
+# print(poly1.print())

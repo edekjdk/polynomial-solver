@@ -1,5 +1,4 @@
 def parse_polynomial(inputTextPolynomial): #funckja przyjmuje wielomian w formie tekstowej w postaci "Ax^n1+Bx^n2+C"
-    print(inputTextPolynomial)
     start = 0
     polynomialParts = []
     parsedPolynomial = {}
@@ -11,8 +10,22 @@ def parse_polynomial(inputTextPolynomial): #funckja przyjmuje wielomian w formie
             polynomialParts.append(inputTextPolynomial[start:i+1])
     for part in polynomialParts:
         if "x^" in part:
-            power = int(part[part.index("^")+1:])
-            coeff = int(part[:part.index("x")])
+            if part[:part.index("x")] == "":
+                power = int(part[part.index("^") + 1:])
+                coeff = 1
+            elif part[:part.index("x")] == "-":
+                power = int(part[part.index("^") + 1:])
+                coeff = -1
+            else:
+                if "+x" in part:
+                    power = int(part[part.index("^") + 1:])
+                    coeff = 1
+                elif "-x" in part:
+                    power = int(part[part.index("^") + 1:])
+                    coeff = -1
+                else:
+                    power = int(part[part.index("^")+1:])
+                    coeff = int(part[:part.index("x")])
         elif "x" in part:
             if part == "+x":
                 power = 1
@@ -31,5 +44,9 @@ def parse_polynomial(inputTextPolynomial): #funckja przyjmuje wielomian w formie
             parsedPolynomial[power] += coeff
         else:
             parsedPolynomial[power] = coeff
-    return parsedPolynomial
 
+    sortedParsedPolynomial = sorted(parsedPolynomial.items(), key=lambda x: x[0], reverse=True)
+    return sortedParsedPolynomial
+
+
+# print(parse_polynomial("3x^2-2x+5"))
