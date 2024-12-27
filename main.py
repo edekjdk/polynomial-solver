@@ -89,4 +89,17 @@ result = splitPolynomial(polynomial)
 #
 # print(int("+1"))
 
-print([(2,11),(3,10)])
+#print([(2,11),(3,10)])
+test = [(4, 1), (2, -1), (0, -1)]
+dl = 4
+
+tab = [0 for i in range(dl+1)]
+
+print(tab)
+for i in test:
+    print( dl-i[0], i)
+    tab[dl-i[0]] = i[1]
+
+
+print(tab)
+

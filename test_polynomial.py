@@ -71,3 +71,13 @@ class TestPolynomial:
         out, err = capsys.readouterr()
 
         assert out == "100\n"
+
+    # def test_polynomial_value(self, capsys):
+    #     textPolynomial = "x^2+2x+1"
+    #     parsed = parse_polynomial(textPolynomial)
+    #     poly = Polynomial(parsed)
+    #
+    #     poly.value(1)
+    #     out, err = capsys.readouterr()
+    #
+    #     assert out == "4\n"
