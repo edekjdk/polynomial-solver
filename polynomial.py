@@ -1,14 +1,11 @@
-from time import process_time_ns
-
 from parse_polynomial import parse_polynomial
 import numpy as np
 import matplotlib.pyplot as plt
 
 class Polynomial:
-    def __init__(self, poly):
+    def __init__(self, poly: list[dict[int, int]]) -> None:
         self.poly = poly
-
-    def print(self):
+    def print(self) -> str:
         superscript_dict = {
             '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
             '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
@@ -33,9 +30,10 @@ class Polynomial:
                 polynomialString += f"+{term}"
             else:
                 polynomialString += term
-        print(polynomialString)
+        #print(polynomialString)
+        return polynomialString
 
-    def degree(self):
+    def degree(self) -> int:
         #first, not the best approach
 
         # degree = 0
@@ -48,10 +46,11 @@ class Polynomial:
         #print(len(self.poly))
 
         #third, not the best but the most "python way"
-        print(max(i[0] for i in self.poly))
+        #print(max(i[0] for i in self.poly))
+        return max(i[0] for i in self.poly)
 
 
-    def solve(self):
+    def solve(self) -> list[int]:
         degree = max(i[0] for i in self.poly)
         tab = [0 for i in range(degree + 1)]
 
@@ -63,10 +62,11 @@ class Polynomial:
         sorted_roots = [round(i, 2) for i in sorted_roots]
 
         #sorted_roots = list(map(lambda x:round(x, 3), sorted_roots)) // second way to do this
-        print(sorted_roots)
+        #print(sorted_roots)
+        return sorted_roots
 
 
-    def chart(self):
+    def chart(self) -> None:
         degree = max(i[0] for i in self.poly)
         tab = [0 for i in range(degree + 1)]
 
@@ -97,9 +97,9 @@ w1 = "x^3-2x-x+1"
 
 w1 = Polynomial(parse_polynomial(w1))
 
-w1.print()
-w1.degree()
-w1.solve()
-w1.chart()
+# print(w1.print())
+# print(w1.degree())
+# print(w1.solve())
+#w1.chart()
 # w1.print()
 

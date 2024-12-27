@@ -1,4 +1,4 @@
-def parse_polynomial(inputTextPolynomial): #funckja przyjmuje wielomian w formie tekstowej w postaci "Ax^n1+Bx^n2+C"
+def parse_polynomial(inputTextPolynomial: str) -> list[dict[int, int]]: #funckja przyjmuje wielomian w formie tekstowej w postaci "Ax^n1+Bx^n2+C"
     start = 0
     polynomialParts = []
     parsedPolynomial = {}
