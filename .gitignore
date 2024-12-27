@@ -1,3 +1,19 @@
-.idea/
+#ignore python
 
-test.py
+*.pyc
+__pychache__
+
+#ignore virtual environment
+
+venv/
+env/
+
+#ignore IDE
+.idea/
+.vscode/
+
+#ignore temporary files
+
+*.log
+*.tmp
+
