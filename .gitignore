@@ -1,7 +1,7 @@
 #ignore python
 
 *.pyc
-__pycache__
+__pycache__/
 
 #ignore virtual environment
 
