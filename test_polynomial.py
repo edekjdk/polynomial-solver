@@ -1,5 +1,6 @@
 import unittest
 
+from main import result
 from parse_polynomial import parse_polynomial
 from polynomial import Polynomial
 
@@ -31,16 +32,11 @@ class TestPolynomial:
     def test_polynomial_print(self, capsys):
         textPolynomial = "3x^2-2x+5"
         parsed = parse_polynomial(textPolynomial)
-
         poly = Polynomial(parsed)
-        poly.print()
+        result = poly.print()
 
-        out, err = capsys.readouterr()
-
-        assert out == "3x²-2x+5\n"
-
-    def test_polynomial_free_term(self, capsys):
-        textPolynomial = "5"
+        assert result == "3x²-2x+5"
+        '''
         parsed = parse_polynomial(textPolynomial)
 
         poly = Polynomial(parsed)
@@ -48,8 +44,19 @@ class TestPolynomial:
 
         out, err = capsys.readouterr()
 
-        assert out == "5\n"
+        assert out == "3x²-2x+5\n"
+        '''
+    def test_polynomial_free_term(self, capsys):
+        textPolynomial = "5"
+        parsed = parse_polynomial(textPolynomial)
 
+        poly = Polynomial(parsed)
+        result = poly.print()
+
+        #out, err = capsys.readouterr()
+        #assert out == "5\n"
+
+        assert result == "5"
 
     def test_parse_polynomial_free(self):
         #try
@@ -66,11 +73,11 @@ class TestPolynomial:
         parsed = parse_polynomial(textPolynomial)
 
         poly = Polynomial(parsed)
-        poly.degree()
-
-        out, err = capsys.readouterr()
-
-        assert out == "100\n"
+        result = poly.degree()
+        # out, err = capsys.readouterr()
+        #
+        # assert out == "100\n"
+        assert result == 100
 
     # def test_polynomial_value(self, capsys):
     #     textPolynomial = "x^2+2x+1"
