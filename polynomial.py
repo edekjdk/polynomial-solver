@@ -80,10 +80,13 @@ class Polynomial:
         # Rysowanie wykresu
         plt.ylim(-5, 5)
         plt.xlim(-5, 5)
-
-        plt.plot(x, y, label="polynomial chart", color="blue")
         plt.axhline(0, color="black", linewidth=0.8, linestyle="--")  # Oś X
-        plt.axvline(0, color="black", linewidth=0.8, linestyle="--")  # Oś Y
+        plt.axvline(0, color="black", linewidth=0.8, linestyle="--")
+        plt.plot(x, y, label="polynomial chart", color="blue")
+        # for i in np.roots(tab).tolist():
+        #     plt.plot(i,0, marker='o', label=i)
+        plt.scatter(np.roots(tab), np.zeros_like(np.roots(tab)), color="black")
+  # Oś Y
         plt.title("polynomial chart")
         plt.xlabel("x")
         plt.ylabel("f(x)")
@@ -92,7 +95,7 @@ class Polynomial:
         plt.show()
 
 
-w1 = "x^3-2x-x+1"
+w1 = "x^2-2x-x"
 
 w1 = Polynomial(parse_polynomial(w1))
 
