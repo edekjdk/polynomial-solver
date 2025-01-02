@@ -74,13 +74,12 @@ class Polynomial:
             tab[degree - i[0]] = i[1]
 
         # Tworzenie wykresu na podstawie tablicy współczynników
-        x = np.linspace(-5.5, 5.5, 1000)  # Generowanie wartości x w zakresie [-10, 10]
+        x = np.linspace(-10, 10, 1000)  # Generowanie wartości x w zakresie [-10, 10]
         y = np.polyval(tab, x)  # Obliczenie wartości wielomianu dla każdego x
 
         # Rysowanie wykresu
-        plt.figure(figsize=(8, 6))
-        plt.ylim(-10, 10)
-        plt.xlim(-10, 10)
+        plt.ylim(-5, 5)
+        plt.xlim(-5, 5)
 
         plt.plot(x, y, label="polynomial chart", color="blue")
         plt.axhline(0, color="black", linewidth=0.8, linestyle="--")  # Oś X
@@ -100,6 +99,6 @@ w1 = Polynomial(parse_polynomial(w1))
 # print(w1.print())
 # print(w1.degree())
 # print(w1.solve())
-#w1.chart()
+w1.chart()
 # w1.print()
 
