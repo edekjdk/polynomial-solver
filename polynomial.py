@@ -56,14 +56,21 @@ class Polynomial:
 
         for i in self.poly:
             tab[degree - i[0]] = i[1]
-
         roots = np.roots(tab).tolist()
-        sorted_roots = sorted(roots, reverse=False)
-        sorted_roots = [round(i, 2) for i in sorted_roots]
 
-        #sorted_roots = list(map(lambda x:round(x, 3), sorted_roots)) // second way to do this
-        #print(sorted_roots)
-        return sorted_roots
+        if complex in list(map(lambda x: type(x), roots)):
+            roots = [complex(round(root.real,2), round(root.imag,2)) for root in roots]
+            roots = [
+                root.real if root.imag == 0 else root
+                for root in roots
+            ]
+        else:
+            roots = sorted(roots, reverse=False)
+            roots = [round(i, 2) for i in roots]
+
+            #sorted_roots = list(map(lambda x:round(x, 3), sorted_roots)) // second way to do this
+
+        return roots
 
 
     def chart(self) -> None:
