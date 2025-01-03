@@ -72,20 +72,22 @@ class Polynomial:
 
         for i in self.poly:
             tab[degree - i[0]] = i[1]
+        print()
+        #roots = [round(i,2 ) for i in np.roots(tab).tolist()]
 
         # Tworzenie wykresu na podstawie tablicy współczynników
         x = np.linspace(-10, 10, 1000)  # Generowanie wartości x w zakresie [-10, 10]
         y = np.polyval(tab, x)  # Obliczenie wartości wielomianu dla każdego x
 
         # Rysowanie wykresu
-        plt.ylim(-5, 5)
-        plt.xlim(-5, 5)
+        plt.ylim(-10, 10)
+        plt.xlim(-10, 10)
         plt.axhline(0, color="black", linewidth=0.8, linestyle="--")  # Oś X
         plt.axvline(0, color="black", linewidth=0.8, linestyle="--")
         plt.plot(x, y, label="polynomial chart", color="blue")
         # for i in np.roots(tab).tolist():
         #     plt.plot(i,0, marker='o', label=i)
-        plt.scatter(np.roots(tab), np.zeros_like(np.roots(tab)), color="black")
+        #plt.scatter(roots, np.zeros_like(roots), color="black", label = roots)
   # Oś Y
         plt.title("polynomial chart")
         plt.xlabel("x")
@@ -95,13 +97,13 @@ class Polynomial:
         plt.show()
 
 
-w1 = "x^2-2x-x"
+w1 = "x^3+x^2-4x-7"
 
 w1 = Polynomial(parse_polynomial(w1))
 
 # print(w1.print())
 # print(w1.degree())
-# print(w1.solve())
+print(w1.solve())
 w1.chart()
 # w1.print()
 
