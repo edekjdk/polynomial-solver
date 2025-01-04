@@ -50,10 +50,9 @@ class Polynomial:
         return max(i[0] for i in self.poly)
 
 
-    def solve(self) -> list[int]:
+    def solve(self, real_only:bool = False) -> list[int]:
         degree = max(i[0] for i in self.poly)
         tab = [0 for i in range(degree + 1)]
-
         for i in self.poly:
             tab[degree - i[0]] = i[1]
         roots = np.roots(tab).tolist()
@@ -64,6 +63,10 @@ class Polynomial:
                 root.real if root.imag == 0 else root
                 for root in roots
             ]
+            if real_only:
+                if float in list(map(lambda x: type(x), roots)):
+                    roots = [root for root in roots if type(root) == float]
+
         else:
             roots = sorted(roots, reverse=False)
             roots = [round(i, 2) for i in roots]
@@ -79,7 +82,6 @@ class Polynomial:
 
         for i in self.poly:
             tab[degree - i[0]] = i[1]
-        print()
         #roots = [round(i,2 ) for i in np.roots(tab).tolist()]
 
         # Tworzenie wykresu na podstawie tablicy współczynników
@@ -110,7 +112,7 @@ w1 = Polynomial(parse_polynomial(w1))
 
 # print(w1.print())
 # print(w1.degree())
-print(w1.solve())
+print(w1.solve(real_only=True))
 w1.chart()
 # w1.print()
 
