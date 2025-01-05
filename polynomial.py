@@ -13,7 +13,7 @@ class Polynomial:
 
         polynomialString = ''
         for power, coeff in self.poly:
-            if power == 0:  # Wyraz wolny, bez zmiennej
+            if power == 0:
                 term = f"{coeff}"
             elif power == 1:  # x zamiast x¹
                 term = f"{coeff}x"
@@ -25,7 +25,6 @@ class Polynomial:
             elif coeff == -1 and power > 0:
                 term = term.replace("-1x", "-x")
 
-            # Dodawanie znaku "+" dla dodatnich współczynników (poza pierwszym składnikiem)
             if coeff > 0 and polynomialString:
                 polynomialString += f"+{term}"
             else:
@@ -76,27 +75,31 @@ class Polynomial:
         return roots
 
 
-    def chart(self) -> None:
+    def chart(self, x_range:list[int]=[-10,10], y_range:list[int]=[-10,10]) -> None:
         degree = max(i[0] for i in self.poly)
         tab = [0 for i in range(degree + 1)]
 
         for i in self.poly:
             tab[degree - i[0]] = i[1]
         #roots = [round(i,2 ) for i in np.roots(tab).tolist()]
+        roots = np.roots(tab).tolist()
+        notComplex = [round(i.real, 2) for i in roots if i.imag == 0.0]
+        # for i in roots:
+        #     if type(i) == complex:
+        #         roots.remove(i)
 
-        # Tworzenie wykresu na podstawie tablicy współczynników
-        x = np.linspace(-10, 10, 1000)  # Generowanie wartości x w zakresie [-10, 10]
-        y = np.polyval(tab, x)  # Obliczenie wartości wielomianu dla każdego x
+        x = np.linspace(-10, 10, 1000)
+        y = np.polyval(tab, x)
 
         # Rysowanie wykresu
-        plt.ylim(-10, 10)
-        plt.xlim(-10, 10)
+        plt.ylim(y_range[0], y_range[1])
+        plt.xlim(x_range[0], x_range[1])
         plt.axhline(0, color="black", linewidth=0.8, linestyle="--")  # Oś X
         plt.axvline(0, color="black", linewidth=0.8, linestyle="--")
         plt.plot(x, y, label="polynomial chart", color="blue")
         # for i in np.roots(tab).tolist():
         #     plt.plot(i,0, marker='o', label=i)
-        #plt.scatter(roots, np.zeros_like(roots), color="black", label = roots)
+        plt.scatter(notComplex, np.zeros_like(notComplex), color="black")
   # Oś Y
         plt.title("polynomial chart")
         plt.xlabel("x")
@@ -106,13 +109,13 @@ class Polynomial:
         plt.show()
 
 
-w1 = "x^3+x^2-4x-7"
+w1 = "x^2-4x-7"
 
 w1 = Polynomial(parse_polynomial(w1))
 
-# print(w1.print())
+print(w1.print())
 # print(w1.degree())
 print(w1.solve(real_only=True))
-w1.chart()
+w1.chart(y_range=[-20,20], x_range=[-20,20])
 # w1.print()
 
