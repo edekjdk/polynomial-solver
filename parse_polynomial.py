@@ -33,6 +33,9 @@ def parse_polynomial(inputTextPolynomial: str) -> list[dict[int, int]]: #funckja
             elif part == "-x":
                 power = 1
                 coeff = -1
+            elif part == "x":
+                power = 1
+                coeff = 1
             else:
                 power = 1
                 coeff = int(part[:part.index("x")])
@@ -47,4 +50,5 @@ def parse_polynomial(inputTextPolynomial: str) -> list[dict[int, int]]: #funckja
 
     sortedParsedPolynomial = sorted(parsedPolynomial.items(), key=lambda x: x[0], reverse=True)
     return sortedParsedPolynomial
+
 

@@ -107,15 +107,42 @@ class Polynomial:
         plt.legend()
         plt.show()
 
+    def addPolynomials(self, *args):
+        result = {}
+        for power, coeff in self.poly:
+            if power in result:
+                result[power] += coeff
+            else:
+                result[power] = coeff
+        for polynomial in args:
+            for power, coeff in polynomial.poly:
+                if power in result:
+                    result[power] += coeff
+                else:
+                    result[power] = coeff
+        sorted_result = sorted(result.items(), key=lambda x: x[0], reverse=True)
+        return Polynomial(sorted_result)
+
+    def __add__(self, *args):
+        return self.addPolynomials(*args)
 
 w1 = "3x^3-x^2-4x-7"
+w2 = "x+3"
+w3 = "x+3-5"
 
 w1 = Polynomial(parse_polynomial(w1))
+w2 = Polynomial(parse_polynomial(w2))
+w3 = Polynomial(parse_polynomial(w3))
 
-print(w1.print())
+w4 = w1.addPolynomials(w2,w3)
+w5 = w1 + w3
+print(w4.print())
+print(w5.print())
+
+#print(w1.print())
 # print(w1.degree())
-print(w1.solve(real_only=True))
-print(w1.solve())
-w1.chart(y_range=[-20,20], x_range=[-20,20])
+#print(w1.solve(real_only=True))
+#print(w1.solve())
+w1.chart(y_range=[-20,20])
 # w1.print()
 
