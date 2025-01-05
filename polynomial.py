@@ -76,7 +76,8 @@ class Polynomial:
 
 
     def chart(self, x_range:list[int]=[-10,10], y_range:list[int]=[-10,10]) -> None:
-        degree = max(i[0] for i in self.poly)
+        #degree = max(i[0] for i in self.poly)
+        degree = self.degree()
         tab = [0 for i in range(degree + 1)]
 
         for i in self.poly:
@@ -91,7 +92,6 @@ class Polynomial:
         x = np.linspace(-10, 10, 1000)
         y = np.polyval(tab, x)
 
-        # Rysowanie wykresu
         plt.ylim(y_range[0], y_range[1])
         plt.xlim(x_range[0], x_range[1])
         plt.axhline(0, color="black", linewidth=0.8, linestyle="--")  # Oś X
@@ -99,8 +99,7 @@ class Polynomial:
         plt.plot(x, y, label="polynomial chart", color="blue")
         # for i in np.roots(tab).tolist():
         #     plt.plot(i,0, marker='o', label=i)
-        plt.scatter(notComplex, np.zeros_like(notComplex), color="black")
-  # Oś Y
+        plt.scatter(notComplex, np.zeros_like(notComplex), color="black", label=notComplex)
         plt.title("polynomial chart")
         plt.xlabel("x")
         plt.ylabel("f(x)")
@@ -109,13 +108,14 @@ class Polynomial:
         plt.show()
 
 
-w1 = "x^2-4x-7"
+w1 = "3x^3-x^2-4x-7"
 
 w1 = Polynomial(parse_polynomial(w1))
 
 print(w1.print())
 # print(w1.degree())
 print(w1.solve(real_only=True))
+print(w1.solve())
 w1.chart(y_range=[-20,20], x_range=[-20,20])
 # w1.print()
 
