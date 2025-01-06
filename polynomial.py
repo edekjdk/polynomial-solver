@@ -1,4 +1,5 @@
 from parse_polynomial import parse_polynomial
+from charts import Charts
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -138,6 +139,8 @@ w4 = w1.addPolynomials(w2,w3)
 w5 = w1 + w3
 print(w4.print())
 print(w5.print())
+
+Charts.draw(w1)
 
 #print(w1.print())
 # print(w1.degree())
