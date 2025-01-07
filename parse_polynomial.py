@@ -2,7 +2,7 @@ def parse_polynomial(inputTextPolynomial: str) -> list[dict[int, int]]: #funckja
     start = 0
     polynomialParts = []
     parsedPolynomial = {}
-    for i in range(0, len(inputTextPolynomial)): #dzielimy wielomian na skladowe wzgledem znakow "+" lub "-"
+    for i in range(0, len(inputTextPolynomial)):
         if i != 0 and inputTextPolynomial[i] == '-' or inputTextPolynomial[i] == '+':
             polynomialParts.append(inputTextPolynomial[start:i])
             start = i

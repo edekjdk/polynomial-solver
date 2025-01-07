@@ -1,4 +1,5 @@
 from parse_polynomial import parse_polynomial
+from charts import Charts
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -163,7 +164,7 @@ w7 = w1-w2
 
 print(w7.print())
 
-
+print(w7.solve(real_only=True))
 
 #print(w1.print())
 # print(w1.degree())
@@ -172,3 +173,5 @@ print(w7.print())
 w1.chart(y_range=[-20,20])
 # w1.print()
 
+
+Charts.test(w1)

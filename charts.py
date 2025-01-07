@@ -1,6 +1,6 @@
-from polynomial import Polynomial
 
 
-class Charts(Polynomial):
-    def draw(xd):
-        print(xd)
+class Charts:
+    @staticmethod
+    def test(w):
+        print(w.poly)
