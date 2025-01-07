@@ -2,5 +2,6 @@
 
 class Charts:
     @staticmethod
-    def test(w):
-        print(w.poly)
+    def draw_chart(*args):
+        for w in args:
+            print(w.poly, w.degree())
