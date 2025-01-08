@@ -174,4 +174,5 @@ w1.chart(y_range=[-20,20])
 # w1.print()
 
 
-Charts.draw_chart(w1,w2,w3)
+Charts.draw_chart(w1,w2,w3  )
+#Charts.draw_chart(w1,w2,w3, x_range=[5,5], y_range=[5,5])

@@ -3,13 +3,12 @@ import matplotlib.pyplot as plt
 
 class Charts:
     @staticmethod
-    def draw_chart(*args):
-
+    def draw_chart(*args, x_range=[-10,10], y_range=[-10,10]):
         x = np.linspace(-10, 10, 1000)
 
 
-        plt.ylim(-10, 10)
-        plt.xlim(-10, 10)
+        plt.ylim(y_range[0], y_range[1])
+        plt.xlim(x_range[0], x_range[1])
         plt.axhline(0, color="black", linewidth=0.8, linestyle="--")  # Oś X
         plt.axvline(0, color="black", linewidth=0.8, linestyle="--")
         # for i in np.roots(tab).tolist():
