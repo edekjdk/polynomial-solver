@@ -129,23 +129,27 @@ class Polynomial:
         return self.addPolynomials(*args)
 
     def substractPolynomials(self, *args):
-        result = {}
-        for power, coeff in self.poly:
-            if power in result:
-                result[power] -= coeff
-            else:
-                result[power] = coeff
+        # Inicjalizacja wyniku na podstawie `self.poly`
+        result = {power: coeff for power, coeff in self.poly}
+
+        # Odejmowanie współczynników wielomianów w args
         for polynomial in args:
             for power, coeff in polynomial.poly:
                 if power in result:
-                    result[power] -= coeff
+                    result[power] -= coeff  # Odejmujemy współczynniki
                 else:
-                    result[power] = coeff
+                    result[power] = -coeff  # Dodajemy ujemny współczynnik dla nowej potęgi
+
+        # Usunięcie współczynników zerowych
+        result = {power: coeff for power, coeff in result.items() if not np.isclose(coeff, 0)}
+
+        # Sortowanie wyników według potęg (malejąco) i zwracanie jako obiekt Polynomial
         sorted_result = sorted(result.items(), key=lambda x: x[0], reverse=True)
         return Polynomial(sorted_result)
 
     def __sub__(self, *args):
         return self.substractPolynomials(*args)
+
 
 w1 = "3x^3-x^2-4x-7"
 w2 = "x^2"
@@ -161,7 +165,6 @@ w5 = w1 + w3
 w6 = w2.substractPolynomials(w3)
 
 w7 = w1-w2
-
 #print(w7.print())
 
 #print(w7.solve(real_only=True))
@@ -174,7 +177,7 @@ w7 = w1-w2
 # w1.print()
 
 
-Charts.draw_chart(w1,w2,w3)
+Charts.draw_chart(w1,w2,w3, x_range=[-5,5], y_range=[-5,5])
 #Charts.draw_chart(w1,w2,w3, x_range=[5,5], y_range=[5,5])
 
 

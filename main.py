@@ -1,4 +1,7 @@
+import itertools
+
 import numpy as np
+from itertools import combinations
 
 polynomial = "23x^3-12x^4-2x+2x^2+1"
 
@@ -95,12 +98,26 @@ dl = 4
 
 tab = [0 for i in range(dl+1)]
 
-print(tab)
 for i in test:
-    print( dl-i[0], i)
     tab[dl-i[0]] = i[1]
 
 
-print(tab)
+tab = [1,2,3]
 
+for pair in combinations(tab, 2):
+    print(pair)
+
+
+tab1 = [1,0,0]
+tab2 = [0,1,0]
+
+print(np.subtract(tab1, tab2))
+
+x = np.roots([1,-1,0])
+y = np.polyval(tab1, x)
+
+print(x,y)
+
+for x,y in zip(tab1, tab2):
+    print(x,y)
 
