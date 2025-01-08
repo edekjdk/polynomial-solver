@@ -1,9 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+
+
+
+
 class Charts:
     @staticmethod
     def draw_chart(*args, x_range=[-10,10], y_range=[-10,10]):
+
+
+
+
+
         x = np.linspace(-10, 10, 1000)
 
 
@@ -24,5 +34,8 @@ class Charts:
                 tab[w.degree() - i[0]] = i[1]
             y = np.polyval(tab, x)
             plt.plot(x, y, label=w.print())
+
+
+
         plt.legend()
         plt.show()

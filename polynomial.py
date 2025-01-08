@@ -170,9 +170,12 @@ w7 = w1-w2
 # print(w1.degree())
 #print(w1.solve(real_only=True))
 #print(w1.solve())
-w1.chart(y_range=[-20,20])
+#w1.chart(y_range=[-20,20])
 # w1.print()
 
 
-Charts.draw_chart(w1,w2,w3  )
+Charts.draw_chart(w1,w2,w3)
 #Charts.draw_chart(w1,w2,w3, x_range=[5,5], y_range=[5,5])
+
+
+
