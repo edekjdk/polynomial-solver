@@ -148,7 +148,7 @@ class Polynomial:
         return self.substractPolynomials(*args)
 
 w1 = "3x^3-x^2-4x-7"
-w2 = "x+3"
+w2 = "x^2"
 w3 = "x+3-5"
 
 w1 = Polynomial(parse_polynomial(w1))
