@@ -24,6 +24,6 @@ class Charts:
             for i in w.poly:
                 tab[w.degree() - i[0]] = i[1]
             y = np.polyval(tab, x)
-            plt.plot(x, y, label="polynomial chart")
-
+            plt.plot(x, y, label=w.print())
+        plt.legend()
         plt.show()

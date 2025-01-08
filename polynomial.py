@@ -149,7 +149,7 @@ class Polynomial:
 
 w1 = "3x^3-x^2-4x-7"
 w2 = "x^2"
-w3 = "x+3-5"
+w3 = "x"
 
 w1 = Polynomial(parse_polynomial(w1))
 w2 = Polynomial(parse_polynomial(w2))
@@ -170,7 +170,7 @@ w7 = w1-w2
 # print(w1.degree())
 #print(w1.solve(real_only=True))
 #print(w1.solve())
-#w1.chart(y_range=[-20,20])
+w1.chart(y_range=[-20,20])
 # w1.print()
 
 
