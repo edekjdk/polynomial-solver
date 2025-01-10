@@ -178,7 +178,7 @@ w7 = w1-w2
 
 
 
-Charts.draw_chart(w1,w2,w4, x_range=[-5,5], y_range=[-5,5])
+Charts.draw_chart(w1,w2,w4, common_points=True)
 #Charts.draw_chart(w1,w2,w3, x_range=[5,5], y_range=[5,5])
 
 
