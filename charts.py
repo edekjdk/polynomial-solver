@@ -8,7 +8,7 @@ from itertools import combinations
 
 class Charts:
     @staticmethod
-    def draw_chart(self, *args, x_range=[-10,10], y_range=[-10,10]):
+    def draw_chart(*args, x_range=[-10,10], y_range=[-10,10]):
 
         x = np.linspace(-10, 10, 1000)
 
@@ -22,10 +22,19 @@ class Charts:
         plt.xlabel("x")
         plt.ylabel("f(x)")
         plt.grid(True)
+        Charts._draw_multiple_charts(x,*args)
+        Charts._draw_common_points(*args)
+        plt.legend()
+        plt.show()
 
-        #self._draw_multiple_charts(x,args)
+    @staticmethod
+    def _draw_multiple_charts(x,*args):
+        for w in args:
+            y = np.polyval(w.table_of_coefficients, x)
+            plt.plot(x, y, label=w.print())
 
-
+    @staticmethod
+    def _draw_common_points(*args):
         all = []
         for w1, w2 in combinations(args, 2):
             w = (w1-w2)
@@ -47,24 +56,10 @@ class Charts:
                         all.append([x1.real, y2.real])
                 else:
                     all.append([x1,y2])
-        # all = [
-        #     root.real if root.imag == 0 else root
-        #     for root in all
-        # ]
-    def _draw_multiple_charts(self, args, x):
-        for w in args:
-            table_of_coefficients = get_table_of_coefficients(w)
-            y = np.polyval(table_of_coefficients, x)
-            plt.plot(x, y, label=w.print())
-
-
-
-
         for i in all:
             plt.scatter(*i, color="black", zorder=10)
 
 
-        plt.legend()
-        plt.show()
+
 
 

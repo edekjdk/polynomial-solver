@@ -168,15 +168,13 @@ w7 = w1-w2
 #print(w7.print())
 
 #print(w7.solve(real_only=True))
-
-print(w1.print())
-print(w1.degree())
+#print(w1.print())
+#print(w1.degree())
 #print(w1.solve(real_only=True))
-print(w1.solve())
-w1.chart(y_range=[-20,20])
+#print(w1.solve())
+#w1.chart(y_range=[-20,20])
 # w1.print()
 
-print(w1.table_of_coefficients)
 
 
 
