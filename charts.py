@@ -8,7 +8,7 @@ from itertools import combinations
 
 class Charts:
     @staticmethod
-    def draw_chart(*args, x_range=[-10,10], y_range=[-10,10]):
+    def draw_chart(self, *args, x_range=[-10,10], y_range=[-10,10]):
 
         x = np.linspace(-10, 10, 1000)
 
@@ -23,13 +23,8 @@ class Charts:
         plt.ylabel("f(x)")
         plt.grid(True)
 
-        for w in args:
-            tab = [0 for i in range(w.degree() + 1)]
+        #self._draw_multiple_charts(x,args)
 
-            for i in w.poly:
-                tab[w.degree() - i[0]] = i[1]
-            y = np.polyval(tab, x)
-            plt.plot(x, y, label=w.print())
 
         all = []
         for w1, w2 in combinations(args, 2):
@@ -56,6 +51,11 @@ class Charts:
         #     root.real if root.imag == 0 else root
         #     for root in all
         # ]
+    def _draw_multiple_charts(self, args, x):
+        for w in args:
+            table_of_coefficients = get_table_of_coefficients(w)
+            y = np.polyval(table_of_coefficients, x)
+            plt.plot(x, y, label=w.print())
 
 
 

@@ -6,6 +6,15 @@ import matplotlib.pyplot as plt
 class Polynomial:
     def __init__(self, poly: list[dict[int, int]]) -> None:
         self.poly = poly
+        self.table_of_coefficients = self._get_table_of_coefficients()
+
+    def _get_table_of_coefficients(self) -> list[int]:
+        degree = self.degree()
+        table_of_coefficients = [0 for i in range(degree + 1)]
+        for i in self.poly:
+            table_of_coefficients[degree - i[0]] = i[1]
+        return table_of_coefficients
+
     def print(self) -> str:
         superscript_dict = {
             '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
@@ -52,8 +61,7 @@ class Polynomial:
 
 
     def solve(self, real_only:bool = False) -> list[int]:
-        table_of_coefficients = get_table_of_coefficients(self)
-        roots = np.roots(table_of_coefficients).tolist()
+        roots = np.roots(self.table_of_coefficients).tolist()
 
         if complex in list(map(lambda x: type(x), roots)):
             roots = [complex(round(root.real,2), round(root.imag,2)) for root in roots]
@@ -75,15 +83,14 @@ class Polynomial:
 
 
     def chart(self, x_range:list[int]=[-10,10], y_range:list[int]=[-10,10]) -> None:
-        table_of_coefficients = get_table_of_coefficients(self.poly)
-        roots = np.roots(table_of_coefficients).tolist()
+        roots = np.roots(self.table_of_coefficients).tolist()
         notComplex = [round(i.real, 2) for i in roots if i.imag == 0.0]
         # for i in roots:
         #     if type(i) == complex:
         #         roots.remove(i)
 
         x = np.linspace(-10, 10, 1000)
-        y = np.polyval(table_of_coefficients, x)
+        y = np.polyval(self.table_of_coefficients, x)
 
         plt.ylim(y_range[0], y_range[1])
         plt.xlim(x_range[0], x_range[1])
@@ -120,21 +127,17 @@ class Polynomial:
         return self.addPolynomials(*args)
 
     def substractPolynomials(self, *args):
-        # Inicjalizacja wyniku na podstawie `self.poly`
         result = {power: coeff for power, coeff in self.poly}
 
-        # Odejmowanie współczynników wielomianów w args
         for polynomial in args:
             for power, coeff in polynomial.poly:
                 if power in result:
-                    result[power] -= coeff  # Odejmujemy współczynniki
+                    result[power] -= coeff
                 else:
-                    result[power] = -coeff  # Dodajemy ujemny współczynnik dla nowej potęgi
+                    result[power] = -coeff
 
-        # Usunięcie współczynników zerowych
         result = {power: coeff for power, coeff in result.items() if not np.isclose(coeff, 0)}
 
-        # Sortowanie wyników według potęg (malejąco) i zwracanie jako obiekt Polynomial
         sorted_result = sorted(result.items(), key=lambda x: x[0], reverse=True)
         return Polynomial(sorted_result)
 
@@ -142,13 +145,6 @@ class Polynomial:
         return self.substractPolynomials(*args)
 
 
-
-def get_table_of_coefficients(polynomial:Polynomial) -> list[int]:
-    degree  = polynomial.degree()
-    table_of_coefficients = [0 for i in range(degree + 1)]
-    for i in polynomial.poly:
-        table_of_coefficients[degree - i[0]] = i[1]
-    return table_of_coefficients
 
 
 
@@ -175,10 +171,13 @@ w7 = w1-w2
 
 print(w1.print())
 print(w1.degree())
-print(w1.solve(real_only=True))
+#print(w1.solve(real_only=True))
 print(w1.solve())
-#w1.chart(y_range=[-20,20])
+w1.chart(y_range=[-20,20])
 # w1.print()
+
+print(w1.table_of_coefficients)
+
 
 
 Charts.draw_chart(w1,w2,w4, x_range=[-5,5], y_range=[-5,5])
