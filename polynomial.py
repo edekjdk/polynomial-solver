@@ -154,12 +154,13 @@ class Polynomial:
 w1 = "3x^3-x^2-4x-7"
 w2 = "x^2"
 w3 = "x"
+w4 = "x^3-5x+2"
 
 w1 = Polynomial(parse_polynomial(w1))
 w2 = Polynomial(parse_polynomial(w2))
 w3 = Polynomial(parse_polynomial(w3))
+w4 = Polynomial(parse_polynomial(w4))
 
-w4 = w1.addPolynomials(w2,w3)
 w5 = w1 + w3
 
 w6 = w2.substractPolynomials(w3)
@@ -177,7 +178,7 @@ w7 = w1-w2
 # w1.print()
 
 
-Charts.draw_chart(w1,w2,w3, x_range=[-5,5], y_range=[-5,5])
+Charts.draw_chart(w1,w2,w4, x_range=[-5,5], y_range=[-5,5])
 #Charts.draw_chart(w1,w2,w3, x_range=[5,5], y_range=[5,5])
 
 

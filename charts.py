@@ -10,10 +10,6 @@ class Charts:
     @staticmethod
     def draw_chart(*args, x_range=[-10,10], y_range=[-10,10]):
 
-
-
-
-
         x = np.linspace(-10, 10, 1000)
 
 
@@ -61,7 +57,7 @@ class Charts:
         #     for root in all
         # ]
 
-
+    def __
 
 
         for i in all:
@@ -70,3 +66,5 @@ class Charts:
 
         plt.legend()
         plt.show()
+
+
