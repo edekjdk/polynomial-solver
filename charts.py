@@ -57,7 +57,7 @@ class Charts:
         #     for root in all
         # ]
 
-    def __
+
 
 
         for i in all:

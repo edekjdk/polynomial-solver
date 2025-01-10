@@ -52,11 +52,8 @@ class Polynomial:
 
 
     def solve(self, real_only:bool = False) -> list[int]:
-        degree = max(i[0] for i in self.poly)
-        tab = [0 for i in range(degree + 1)]
-        for i in self.poly:
-            tab[degree - i[0]] = i[1]
-        roots = np.roots(tab).tolist()
+        table_of_coefficients = get_table_of_coefficients(self)
+        roots = np.roots(table_of_coefficients).tolist()
 
         if complex in list(map(lambda x: type(x), roots)):
             roots = [complex(round(root.real,2), round(root.imag,2)) for root in roots]
@@ -78,21 +75,15 @@ class Polynomial:
 
 
     def chart(self, x_range:list[int]=[-10,10], y_range:list[int]=[-10,10]) -> None:
-        #degree = max(i[0] for i in self.poly)
-        degree = self.degree()
-        tab = [0 for i in range(degree + 1)]
-
-        for i in self.poly:
-            tab[degree - i[0]] = i[1]
-        #roots = [round(i,2 ) for i in np.roots(tab).tolist()]
-        roots = np.roots(tab).tolist()
+        table_of_coefficients = get_table_of_coefficients(self.poly)
+        roots = np.roots(table_of_coefficients).tolist()
         notComplex = [round(i.real, 2) for i in roots if i.imag == 0.0]
         # for i in roots:
         #     if type(i) == complex:
         #         roots.remove(i)
 
         x = np.linspace(-10, 10, 1000)
-        y = np.polyval(tab, x)
+        y = np.polyval(table_of_coefficients, x)
 
         plt.ylim(y_range[0], y_range[1])
         plt.xlim(x_range[0], x_range[1])
@@ -151,6 +142,18 @@ class Polynomial:
         return self.substractPolynomials(*args)
 
 
+
+def get_table_of_coefficients(polynomial:Polynomial) -> list[int]:
+    degree  = polynomial.degree()
+    table_of_coefficients = [0 for i in range(degree + 1)]
+    for i in polynomial.poly:
+        table_of_coefficients[degree - i[0]] = i[1]
+    return table_of_coefficients
+
+
+
+
+
 w1 = "3x^3-x^2-4x-7"
 w2 = "x^2"
 w3 = "x"
@@ -170,10 +173,10 @@ w7 = w1-w2
 
 #print(w7.solve(real_only=True))
 
-#print(w1.print())
-# print(w1.degree())
-#print(w1.solve(real_only=True))
-#print(w1.solve())
+print(w1.print())
+print(w1.degree())
+print(w1.solve(real_only=True))
+print(w1.solve())
 #w1.chart(y_range=[-20,20])
 # w1.print()
 
